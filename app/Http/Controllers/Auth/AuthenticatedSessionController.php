@@ -29,6 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $notification = array(
+            'message' => 'Login Successfully',
+            'alert-type' => 'success',
+        );
 
         // Role Route Define
         $url = '';
@@ -41,7 +45,7 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
 

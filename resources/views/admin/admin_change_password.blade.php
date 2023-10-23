@@ -28,8 +28,7 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('update.password') }}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('update.password') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @if (session('status'))
                                     <div class="alert alert-success" role="alert">
@@ -45,10 +44,7 @@
                                         <h6 class="mb-0">Old Password</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="password" name="old_password"
-                                            class="form-control  @error('old_password')
-                                        is-invalid
-                                        @enderror "
+                                        <input type="password" name="old_password" class="form-control"
                                             id="current_password" placeholder="Old Password" />
                                         @error('old_password')
                                             <span class="text-danger">{{ $message }}</span>
@@ -61,9 +57,7 @@
                                         <h6 class="mb-0">New Password</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="password" name="new_password"
-                                        class="form-control @error('new_password') is-invalid
-                                        @enderror"
+                                        <input type="password" name="new_password" class="form-control"
                                             id="new_password" placeholder="New Password">
                                         @error('new_password')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,8 +70,7 @@
                                         <h6 class="mb-0">Comfirm Password</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="password" name="new_password_comfimation"
-                                            class="form-control"
+                                        <input type="password" name="new_password_comfimation" class="form-control"
                                             id="new_password_comfimation" placeholder="Comfirm Password" />
 
                                     </div>
@@ -94,6 +87,7 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>

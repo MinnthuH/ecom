@@ -24,6 +24,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard',[UserController::class,'UserDashboard'])->name('user.dashboard'); // User dahboard
+    Route::post('/user/profile/store',[UserController::class,'UserProfileStore'])->name('user.profile-store'); // User Profile Store
+    Route::get('/user/logout',[UserController::class,'UserLogout'])->name('user.logout'); // User logout
+    Route::post('/user/password/update',[UserController::class,'UserPasswordUpdate'])->name('user.password.update'); // User Profile Store
+
 
 }); // Group Middleware End
 
