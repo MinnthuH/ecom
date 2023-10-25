@@ -13,6 +13,7 @@
     <link href="{{ asset('adminbackend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
     <link href="{{ asset('adminbackend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+    <link href="{{asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
     <!-- loader-->
     <link href="{{ asset('adminbackend/assets/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('adminbackend/assets/js/pace.min.js') }}"></script>
@@ -196,6 +197,15 @@
     <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
     <!--toastr JS-->
     <script src="{{ asset('adminbackend/assets/js/toastr.min.js') }}"></script>
+
+    {{-- Datable Table --}}
+    <script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
 
     <script>
         @if (Session::has('message'))
