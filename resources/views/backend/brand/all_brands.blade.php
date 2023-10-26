@@ -40,12 +40,17 @@
                         <tbody>
                             @foreach ($brands as $key => $brand)
                                 <tr>
-                                    <td>{{ $key = +1 }}</td>
+                                    <td>{{ $key+1 }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td><img src="{{ asset($brand->image) }}" style="width:70px; height:40px"></td>
                                     <td>
-                                        <a href="" class="btn btn-info">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('edit.brand',$brand->id)}}"
+                                            class="btn btn-info sm" title="Edit Data"><i
+                                            class='bx bx-message-square-edit'></i></a>
+
+                                        <a href="{{route('delete.brand',$brand->id)}}"
+                                            class="btn btn-danger sm" title="Delete Data" id="delete"><i
+                                            class="lni lni-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

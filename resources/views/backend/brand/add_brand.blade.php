@@ -27,13 +27,13 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('admin.profile-store')}}" method="post" enctype="multipart/form-data">
+                            <form id="myForm" action="{{route('store.brand')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Brand Name</h6>
                                     </div>
-                                    <div class="col-sm-9 text-secondary">
+                                    <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="name" class="form-control" />
                                     </div>
                                 </div>
@@ -84,6 +84,38 @@
             reader.readAsDataURL(e.target.files['0']);
         });
     });
+</script>
+
+{{-- validatin message --}}
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required : true,
+                },
+
+            },
+            messages :{
+                name: {
+                    required : 'Brand အမည် ဖြည့်ရန်လို့အပ်ပါသည်',
+                },
+
+            },
+            errorElement : 'span',
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+
 </script>
 
 

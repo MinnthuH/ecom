@@ -197,6 +197,12 @@
     <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
     <!--toastr JS-->
     <script src="{{ asset('adminbackend/assets/js/toastr.min.js') }}"></script>
+    <!--validation JS-->
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
+
+     {{-- sweet alert  --}}
+     <script src="{{ asset('adminbackend/assets/js/sweetalert2@10.js') }}"></script>
+     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
     {{-- Datable Table --}}
     <script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
