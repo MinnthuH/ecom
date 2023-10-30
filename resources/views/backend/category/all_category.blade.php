@@ -5,19 +5,19 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Brand</div>
+            <div class="breadcrumb-title pe-3">Categories</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Brands</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Categories</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{route('add.brand')}}" class="btn btn-primary">Add Brand</a>
+                    <a href="{{route('add.category')}}" class="btn btn-primary">Add Category</a>
 
                 </div>
             </div>
@@ -31,23 +31,23 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
+                                <th>Category Name</th>
+                                <th>Category Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brands as $key => $brand)
+                            @foreach ($categories as $key => $cat)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $brand->name }}</td>
-                                    <td><img src="{{ asset($brand->image) }}" style="width:70px; height:40px"></td>
+                                    <td>{{ $cat->name }}</td>
+                                    <td><img src="{{ asset($cat->image) }}" style="width:70px; height:40px"></td>
                                     <td>
-                                        <a href="{{route('edit.brand',$brand->id)}}"
+                                        <a href="{{route('edit.category',$cat->id)}}"
                                             class="btn btn-info sm" title="Edit Data"><i
                                             class='bx bx-message-square-edit'></i></a>
 
-                                        <a href="{{route('delete.brand',$brand->id)}}"
+                                        <a href="{{route('delete.category',$cat->id)}}"
                                             class="btn btn-danger sm" title="Delete Data" id="delete"><i
                                             class="lni lni-trash"></i></a>
                                     </td>

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\BrandController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,7 @@ Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.
 Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login'); // Vendor Login
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    // BRAND ALL ROUTE
     Route::controller(BrandController::class)->group(function () {
         Route::get('/all/barnd', 'AllBrand')->name('all.brand'); // All Brand Route
         Route::get('/add/barnd', 'AddBrand')->name('add.brand'); // Add Brand Route
@@ -76,6 +78,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/brand/{id}','EditBrand')->name('edit.brand'); // Edit Brand Route
         Route::post('/update/brand','UpdateBrand')->name('update.brand'); // Update Brand Route
         Route::get('/delete/brand/{id}','DeleteBrand')->name('delete.brand'); // Delete Brand Route
+        Route::get('/edit/brand/{id}','EditBrand')->name('edit.brand'); // Edit Brand Route
+
+    });
+
+    // CATEGORY ALL ROUTE
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/all/category', 'AllCategory')->name('all.category'); // All Category Route
+        Route::get('/add/category', 'AddCategory')->name('add.category'); // Add Category Route
+        Route::post('/store/category','StoreCategory')->name('store.category'); // Store Brand Route
+        Route::get('/edit/category/{id}','EditCategory')->name('edit.category'); // Edit Category Route
+        Route::post('/update/category','UpdateCategory')->name('update.category'); // Update Category Route
+        Route::get('/delete/category/{id}','DeleteCategory')->name('delete.category'); // Delete Category Route
 
     });
 });

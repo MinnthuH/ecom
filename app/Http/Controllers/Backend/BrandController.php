@@ -63,7 +63,7 @@ class BrandController extends Controller
         return view('backend.brand.edit_brand', compact('brand'));
     } // END METHOD
 
-    // EDIT BRAND METHOD
+    // UPDATE  BRAND METHOD
     public function UpdateBrand(Request $request)
     {
         $id = $request->id;
