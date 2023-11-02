@@ -9,7 +9,7 @@ use Image;
 
 class CategoryController extends Controller
 {
-     // ALL BRAND METHOD
+     // ALL CATEGORY METHOD
      public function AllCategory()
      {
          $categories = Category::latest()->get();
