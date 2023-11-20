@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -79,7 +79,6 @@ class AdminController extends Controller
     // Admin Update Password
     public function adminUpdatePassword(Request $request)
     {
-        // dd($request->all());
         // Validation
         $request->validate([
             'old_password' => 'required',
@@ -99,5 +98,81 @@ class AdminController extends Controller
         return back()->with('status', 'Password Updated Successfully');
 
     } // End Of Admin Update Password
+
+    // Inactive Vendor Method
+    public function InactiveVendor()
+    {
+        $inActiveVendor = User::where('status', 'inactive')
+            ->where('role', 'vendor')
+            ->latest()
+            ->get();
+
+        return view('backend.vendor.inactive_vendor', compact('inActiveVendor'));
+
+    } // End Of Inactive Vendor Method
+
+    // Active Vendor Method
+    public function ActiveVendor()
+    {
+        $ActiveVendor = User::where('status', 'active')
+            ->where('role', 'vendor')
+            ->latest()
+            ->get();
+
+        return view('backend.vendor.active_vendor', compact('ActiveVendor'));
+
+    } // End Of Active Vendor Method
+
+    // Inactive Vendor Detail Method
+    public function InactiveVendorDetail($id)
+    {
+        $inactiveVendorDetails = User::findOrFail($id);
+
+
+
+        return view('backend.vendor.inactive_vendor_detail', compact('inactiveVendorDetails'));
+
+    } // End Of Inactive Vendor Detail Method
+
+    // Active Vendor Approve
+    public function ActiveVendorApprove(Request $request)
+    {
+        $vendorId = $request->id;
+        $user = User::findOrFail($vendorId)->update([
+            'status' => 'active',
+        ]);
+
+        $noti = array(
+            'message' => 'Vendor Status Active Approved',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('active.vendor')->with($noti);
+
+    } // End of Active Vendor Approve
+
+    // Active Vendor Detail Method
+    public function ActiveVendorDetail($id)
+    {
+        $activeVendorDetails = User::findOrFail($id);
+
+        return view('backend.vendor.active_vendor_detail', compact('activeVendorDetails'));
+
+    } // End Of Inactive Vendor Detail Method
+
+    // Inactive Vendor Approve
+    public function InactiveVendorApprove(Request $request)
+    {
+        $vendorId = $request->id;
+        $user = User::findOrFail($vendorId)->update([
+            'status' => 'inactive',
+        ]);
+
+        $noti = array(
+            'message' => 'Vendor Status Inactive Approved',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('inactive.vendor')->with($noti);
+
+    } // End of Inactive Vendor Approve
 
 }

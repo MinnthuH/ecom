@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Illuminate\Http\RedirectResponse;
 
 class VendorController extends Controller
 {
@@ -46,7 +46,6 @@ class VendorController extends Controller
     // Vendor profile update method
     public function vendorProfileStore(Request $request)
     {
-        // dd($request->all()); // dd($request->all()) for debug
 
         $id = Auth::user()->id;
         $data = User::find($id); // find user data with id
@@ -100,5 +99,38 @@ class VendorController extends Controller
         return back()->with('status', 'Password Updated Successfully');
 
     } // End of Vendor update password Method
+
+
+    // Become Vendor method
+    public function BecomeVendor(){
+        return view ('auth.become_vendor');
+    } // End Become Vendor method
+
+    // Vendor Register Method
+    public function VendorRegister(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
+        ]);
+
+        $noti = array(
+            'message' => 'Vendor Registered Successfully',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('vendor.login')->with($noti);
+    }
 
 }

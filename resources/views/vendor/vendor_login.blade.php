@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>Vendor Login | Pencil-eCommerce</title>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,9 @@
 	<link href="{{ asset('adminbackend/assets/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{ asset('adminbackend/assets/css/app.css')}}" rel="stylesheet">
 	<link href="{{ asset('adminbackend/assets/css/icons.css')}}" rel="stylesheet">
-	<title>Pencil - Ecom</title>
+
+     {{-- Toastr CSS  --}}
+     <link rel="stylesheet" type="text/css" href="{{ asset('adminbackend/assets/css/toastr.css') }}">
 </head>
 
 <body class="bg-login">
@@ -115,6 +118,31 @@
 	</script>
 	<!--app JS-->
 	<script src="{{ asset('adminbackend/assets/js/app.js')}}"></script>
+     <!--toastr JS-->
+     <script src="{{ asset('adminbackend/assets/js/toastr.min.js') }}"></script>
+
+     <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
 </body>
 
 </html>

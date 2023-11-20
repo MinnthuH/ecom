@@ -36,6 +36,16 @@ Route::middleware(['auth'])->group(function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+/////////Admin Login /////////////
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login'); // Admin Login
+/////////Vendor Login /////////////
+Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login'); // Vendor Login
+
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor'); // Become Vendor
+Route::post('/vendor/register',[VendorController::class,'VendorRegister'])->name('vendor.register'); // Vendor Register
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -65,10 +75,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 });
 
-/////////Admin Login /////////////
-Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login'); // Admin Login
-/////////Vendor Login /////////////
-Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login'); // Vendor Login
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // BRAND ALL ROUTE
@@ -103,5 +109,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/subcategory','UpdateSubCategory')->name('update.subcategory'); // Update SubCategory Route
         Route::get('/delete/subcategory/{id}','DeleteSubCategory')->name('delete.subcategory'); // Delete SubCategory Route')
 
+    });
+
+     // VENDOR ACTIVE AND INACTIVE ROUTE
+     Route::controller(AdminController::class)->group(function () {
+        Route::get('/inactive-vendor', 'InactiveVendor')->name('inactive.vendor'); // Inactvie vendor route
+        Route::get('/active-vendor', 'ActiveVendor')->name('active.vendor'); // Actvie vendor route
+        Route::get('/inactive-vendor/detail/{id}','InactiveVendorDetail')->name('inactive.vendor.detail'); // Inactive Vendor Detail
+        Route::post('/inactive-vendor/approve','ActiveVendorApprove')->name('active.vendor.approve'); // Active Vendor Approve
+        Route::get('/active-vendor/detail/{id}','ActiveVendorDetail')->name('active.vendor.detail'); // Active Vendor Detail
+        Route::post('/active-vendor/approve','InactiveVendorApprove')->name('inactive.vendor.approve'); // Inactive Vendor Approve
     });
 });

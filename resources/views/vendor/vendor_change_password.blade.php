@@ -1,6 +1,6 @@
-@extends('admin.admin_dashboard')
+@extends('vendor.vendor_dashboard')
 
-@section('admin')
+@section('vendor')
 @section('title')
     Changepassowrd | Pencil eCommerce System
 @endsection

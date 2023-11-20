@@ -1,6 +1,6 @@
-@extends('admin.admin_dashboard')
+@extends('vendor.vendor_dashboard')
 
-@section('admin')
+@section('vendor')
 @section('title')
     Vendor Profile | Pencil eCommerce System
 @endsection
@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <img id="showImage"
-                                            src="{{ !empty($$vendorData->photo) ? url('upload/admin_images/' . $vendorData->photo) : url('upload/no_image.jpg') }}"
+                                            src="{{ !empty($vendorData->photo) ? url('upload/admin_images/' . $vendorData->photo) : url('upload/no_image.jpg') }}"
                                             alt="Admin" class="rounded-circle p-1 bg-primary"
                                             style="width:100px; height:100px">
                                     </div>
