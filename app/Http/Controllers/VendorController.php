@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\RedirectResponse;
 
 class VendorController extends Controller
 {
@@ -92,18 +92,18 @@ class VendorController extends Controller
             return back()->with('error', 'Old Password Does Not Match');
         }
 
-         // Update The New Password
-         User::whereId(Auth::user()->id)->update([
+        // Update The New Password
+        User::whereId(Auth::user()->id)->update([
             'password' => Hash::make($request->new_password),
         ]);
         return back()->with('status', 'Password Updated Successfully');
 
     } // End of Vendor update password Method
 
-
     // Become Vendor method
-    public function BecomeVendor(){
-        return view ('auth.become_vendor');
+    public function BecomeVendor()
+    {
+        return view('auth.become_vendor');
     } // End Become Vendor method
 
     // Vendor Register Method
@@ -111,7 +111,7 @@ class VendorController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed'],
         ]);
 
