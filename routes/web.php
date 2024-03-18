@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -73,6 +74,23 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/change-password', [VendorController::class, 'vendorChangePassword'])->name('vendor.change-password'); // Vendor Change Password view
     Route::post('/vendor/update-password', [VendorController::class, 'vendorUpdatePassword'])->name('vendor-update.password'); // Vendor Update Password
 
+    // VENDOR PRODUCT ALL ROUTE
+    Route::controller(VendorProductController::class)->group(function () {
+        Route::get('/vendor/all/product', 'VendorAllProduct')->name('vendor.all.product'); // Vender All Route
+        Route::get('/vendor/add/product', 'VendorAddProduct')->name('vendor.add.product'); // Vender add Route
+        Route::get('vendor/subcategory/ajax/{id}', 'VendorGetSubCategory'); // Vendor ajax call
+        Route::post('/vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product'); // Vender store Route
+        Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product'); // Vendor Edit Prodcut Route
+        Route::post('/vendor/update/product', 'VendorUpadateProduct')->name('vendor.update.product'); // Vendor update product Route
+        Route::post('/vendor/update/product/thambnail', 'VendorUpadateProductThambnail')->name('vendor.update.product.thambnail'); // Vendor update product Route
+
+        Route::post('/vendor/update/product/multiimage', 'VendorUpadateProductMultiImage')->name('vendor.update.product.multiimage'); // Vendor update product Route
+        Route::get('vendor/product/multiimage/delete/{id}', 'VendorDeleteMultiImages')->name('vendor.product.multiimage.delete'); // Vendor Delete Product MultiImage
+        Route::get('/vendor/product/inactive/{id}', 'VendorProdcutInactive')->name('vendor.product.inactive'); // Vendor Product Inactive
+        Route::get('/vendor/product/active/{id}', 'VendorProdcutActive')->name('vendor.product.active'); // Vendor Product Active
+        Route::get('/vendor/delete/product/{id}', 'VendorDeleteProduct')->name('vendor.delete.product'); // Delete Product
+
+    });
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

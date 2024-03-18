@@ -175,6 +175,8 @@
         </div>
     </div>
     <!--end switcher-->
+
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
