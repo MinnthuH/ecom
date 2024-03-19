@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
@@ -154,4 +155,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product'); // Delete Product
 
     });
+
+    // Slider ALL ROUTE
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('/all/slider', 'AllSlider')->name('all.slider'); // All Slider Route
+        Route::get('/add/slider', 'AddSlider')->name('add.slider'); // Add Slider Route
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider'); // Store Slider Route
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider'); // Edit Slider Route
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider'); // Update Slider Route
+        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider'); // Delete Slider Route
+
+    });
+
 });
