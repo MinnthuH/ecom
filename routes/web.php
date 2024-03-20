@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -54,11 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
-
 /////////////////////// ADMIN DASHBOARD //////////////////////////
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('', [AdminController::class, 'adminDashboard'])->name('admin.dashboard'); // Admin dahboard
+    Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard'); // Admin dahboard
     Route::get('/admin/logout', [AdminController::class, 'adminDestroy'])->name('admin.logout'); // Admin Logout
     Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin.profile'); // Admin Profile
     Route::post('/admin/profile/store', [AdminController::class, 'adminProfileStore'])->name('admin.profile-store'); // Admin Profile Store
@@ -167,4 +166,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     });
 
+    // Banner ALL ROUTE
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('/all/banner', 'AllBanner')->name('all.banner'); // All Banner Route
+        Route::get('/add/banner', 'AddBanner')->name('add.banner'); // Add Banner Route
+        Route::post('/store/banner', 'StoreBanner')->name('store.banner'); // Store Banner Route
+        Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner'); // Edit Banner Route
+        Route::post('/update/banner', 'UpdateBanner')->name('update.banner'); // Update Banner Route
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner'); // Delete Banner Route
+
+    });
 });
+
+require __DIR__ . '/auth.php';
