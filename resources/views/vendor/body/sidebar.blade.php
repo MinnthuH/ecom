@@ -34,9 +34,11 @@
                     <div class="menu-title">Porduct Manage</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Product</a>
+                    <li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All
+                            Product</a>
                     </li>
-                    <li> <a href="{{ route('active.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                    <li> <a href="{{ route('vendor.add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add
+                            Product</a>
                     </li>
 
                 </ul>

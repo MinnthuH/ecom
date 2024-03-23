@@ -12,8 +12,10 @@
     <link href="{{ asset('adminbackend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('adminbackend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
+    <link href="{{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('adminbackend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
-    <link href="{{asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" />
     <!-- loader-->
     <link href="{{ asset('adminbackend/assets/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('adminbackend/assets/js/pace.min.js') }}"></script>
@@ -173,6 +175,8 @@
         </div>
     </div>
     <!--end switcher-->
+
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
@@ -200,18 +204,30 @@
     <!--validation JS-->
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
-     {{-- sweet alert  --}}
-     <script src="{{ asset('adminbackend/assets/js/sweetalert2@10.js') }}"></script>
-     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
+    {{-- taginput js --}}
+    <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+
+    {{-- sweet alert  --}}
+    <script src="{{ asset('adminbackend/assets/js/sweetalert2@10.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
     {{-- Datable Table --}}
-    <script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-	<script src="{{asset('adminbackend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
-	<script>
-		$(document).ready(function() {
-			$('#example').DataTable();
-		  } );
-	</script>
+    <script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+
+    {{-- tinymce editor --}}
+    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js'
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
 
     <script>
         @if (Session::has('message'))
@@ -233,6 +249,16 @@
                     toastr.error(" {{ Session::get('message') }} ");
                     break;
             }
+        @endif
+    </script>
+    <script>
+        @if ($errors->any())
+
+            @foreach ($errors->all() as $error)
+                @php
+                    toastr()->error($error);
+                @endphp
+            @endforeach
         @endif
     </script>
 </body>
