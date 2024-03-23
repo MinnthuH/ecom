@@ -27,7 +27,8 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{route('store.category')}}" method="post" enctype="multipart/form-data">
+                            <form id="myForm" action="{{ route('store.category') }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -51,10 +52,8 @@
                                         <h6 class="mb-0"></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage"
-                                            src="{{ url('upload/no_image.jpg') }}"
-                                            alt="Admin" class="rounded-circle p-1 bg-primary"
-                                            style="width:100px; height:100px">
+                                        <img id="showImage" src="{{ url('upload/no_image.jpg') }}" alt="Admin"
+                                            class="rounded-circle p-1 bg-primary" style="width:100px; height:100px">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -88,34 +87,39 @@
 
 {{-- validatin message --}}
 <script type="text/javascript">
-    $(document).ready(function (){
+    $(document).ready(function() {
         $('#myForm').validate({
             rules: {
                 name: {
-                    required : true,
+                    required: true,
+                },
+                image: {
+                    required: true,
                 },
 
             },
-            messages :{
+            messages: {
                 name: {
-                    required : 'Category အမည် ဖြည့်ရန်လို့အပ်ပါသည်',
+                    required: 'Category အမည် ဖြည့်ရန်လို့အပ်ပါသည်',
+                },
+                image: {
+                    required: 'Category Image ဖြည့်ရန်လို့အပ်ပါသည်',
                 },
 
             },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight : function(element, errorClass, validClass){
+            highlight: function(element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight : function(element, errorClass, validClass){
+            unhighlight: function(element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
         });
     });
-
 </script>
 
 
