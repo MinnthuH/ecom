@@ -51,12 +51,12 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace('', '-', $request->name)),
+            'product_slug' => strtolower(str_replace('', '-', $request->product_name)),
             'product_code' => $request->product_code,
             'product_qty' => $request->product_qty,
             'product_tags' => $request->product_tags,
-            'prodcut_size' => $request->prodcut_size,
-            'prodcut_color' => $request->prodcut_color,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'short_descp' => $request->short_descp,
@@ -112,6 +112,7 @@ class ProductController extends Controller
     // Update Product Method
     public function UpdateProduct(Request $request)
     {
+        // dd($request->toArray());
         $product_id = $request->id;
 
         Product::findOrFail($product_id)->update([
@@ -120,12 +121,12 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace('', '-', $request->name)),
+            'product_slug' => strtolower(str_replace('', '-', $request->product_name)),
             'product_code' => $request->product_code,
             'product_qty' => $request->product_qty,
             'product_tags' => $request->product_tags,
-            'prodcut_size' => $request->prodcut_size,
-            'prodcut_color' => $request->prodcut_color,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'short_descp' => $request->short_descp,
@@ -180,7 +181,9 @@ class ProductController extends Controller
         $imags = $request->multi_img;
         foreach ($imags as $id => $img) {
             $imgDel = MultiImg::findOrFail($id);
-            unlink($imgDel->photo_name);
+            if (file_exists($imgDel->photo_name)) {
+                unlink($imgDel->photo_name);
+            }
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension(); // 1234.jpg
             Image::make($img)->resize(800, 800)->save('upload/products/multi-image/' . $make_name);
             $uploadPath = 'upload/products/multi-image/' . $make_name;

@@ -84,11 +84,9 @@ class CategoryController extends Controller
             $brand->update();
 
             //notification
-            $noti = array(
-                'message' => 'Category Updated With Image Successfully',
-                'alert-type' => 'success',
-            );
-            return redirect()->route('all.category')->with($noti);
+            toastr()->success('Category Updated With Image Successfully');
+
+            return redirect()->route('all.category');
 
         } else {
             $brand = Category::findOrFail($id);
@@ -97,11 +95,8 @@ class CategoryController extends Controller
             $brand->update();
 
             //notification
-            $noti = array(
-                'message' => 'CategoryUpdated without Image Successfully',
-                'alert-type' => 'success',
-            );
-            return redirect()->route('all.category')->with($noti);
+            toastr()->success('CategoryUpdated without Image Successfully');
+            return redirect()->route('all.category');
         } // end esle
     } // END METHOD
 
@@ -115,11 +110,9 @@ class CategoryController extends Controller
         // delete data
         Category::findOrFail($id)->delete();
 
-        $noti = array(
-            'message' => 'Slider Delete Successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('all.category')->with($noti);
+        //notification
+        toastr()->success('Category Delete Successfully');
+        return redirect()->route('all.category');
 
     } // END METHOD
 

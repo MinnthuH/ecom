@@ -301,7 +301,7 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="index.html">Home </a>
+                                    <a class="active" href="{{ url('/') }}">Home </a>
 
                                 </li>
                                 @php

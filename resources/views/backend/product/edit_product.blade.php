@@ -50,14 +50,14 @@
                                     {{-- product color --}}
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Color</label>
-                                        <input type="text" name="prodcut_color" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ $products->prodcut_color }}">
+                                        <input type="text" name="product_color" class="form-control visually-hidden"
+                                            data-role="tagsinput" value="{{ $products->product_color }}">
                                     </div>
                                     {{-- product size --}}
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Size</label>
-                                        <input type="text" name="prodcut_size" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ $products->prodcut_size }}">
+                                        <input type="text" name="product_size" class="form-control visually-hidden"
+                                            data-role="tagsinput" value="{{ $products->product_size }}">
                                     </div>
 
                                     {{-- shrot description --}}

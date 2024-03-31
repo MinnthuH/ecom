@@ -40,11 +40,9 @@ class SubCategoryController extends Controller
         $subcategory->save();
 
         //notification
-        $noti = array(
-            'message' => 'SubCategory Added Successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('all.subcategory')->with($noti);
+        toastr()->success('SubCategory Added Successfully');
+
+        return redirect()->route('all.subcategory');
 
     } // END METHOD
 
@@ -64,7 +62,7 @@ class SubCategoryController extends Controller
 
         // validation
         $request->validate([
-            'subcategory_name'=> 'required|unique:sub_categories'
+            'subcategory_name' => 'required|unique:sub_categories',
         ]);
 
         // update data
@@ -75,35 +73,32 @@ class SubCategoryController extends Controller
         $sub_cat->subcategory_slug = strtolower(str_replace('', '-', $request->subcategory_name));
         $sub_cat->update();
 
+        //notification
+        toastr()->success('SubCategory UpdatedSuccessfully');
+
+        return redirect()->route('all.subcategory');
+
+    } // End Method
+
+    // DELETE SUB CATEGROY METHOD
+    public function DeleteSubCategory($id)
+    {
+        // delete data
+        SubCategory::findOrFail($id)->delete();
 
         //notification
-        $noti = array(
-            'message' => 'SubCategory UpdatedSuccessfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('all.subcategory')->with($noti);
+        toastr()->success('SubCategory Delete Successfully');
 
-    }// End Method
+        return redirect()->route('all.subcategory');
 
-     // DELETE SUB CATEGROY METHOD
-     public function DeleteSubCategory($id)
-     {
-         // delete data
-         SubCategory::findOrFail($id)->delete();
+    } // END METHOD
 
-         $noti = array(
-             'message' => 'SubCategory Delete Successfully',
-             'alert-type' => 'success',
-         );
-         return redirect()->route('all.subcategory')->with($noti);
+    // ajax call method
+    public function GetSubCategory($category_id)
+    {
 
-     }// END METHOD
-
-     // ajax call method
-     public function GetSubCategory($category_id){
-
-        $subcat = SubCategory::where('category_id',$category_id)->orderBy('subcategory_name','ASC')->get();
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
         return json_encode($subcat);
 
-     }// End Method
+    } // End Method
 }

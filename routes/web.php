@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -91,8 +92,9 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/delete/product/{id}', 'VendorDeleteProduct')->name('vendor.delete.product'); // Delete Product
 
     });
-});
+}); // End Vendor Middleware
 
+// Start Admin Middleware
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // BRAND ALL ROUTE
     Route::controller(BrandController::class)->group(function () {
@@ -176,6 +178,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner'); // Delete Banner Route
 
     });
-});
+}); // End Admin Middleware
+
+// Frotend Product Details All
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); // Product Details
 
 require __DIR__ . '/auth.php';

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UsersTableSeeder extends Seeder
 {
@@ -31,9 +30,9 @@ class UsersTableSeeder extends Seeder
 
             // Vendor
             [
-                'name' => 'Pencil',
-                'username' => 'pencil',
-                'email' => 'pencil@gmail.com',
+                'name' => 'Vendor',
+                'username' => 'vendor',
+                'email' => 'vendor@gmail.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'vendor',
                 'status' => 'active',

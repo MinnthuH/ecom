@@ -48,13 +48,13 @@
                                     {{-- product color --}}
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Color</label>
-                                        <input type="text" name="prodcut_color" class="form-control visually-hidden"
+                                        <input type="text" name="product_color" class="form-control visually-hidden"
                                             data-role="tagsinput" value="Red,Blue,Green">
                                     </div>
                                     {{-- product size --}}
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Size</label>
-                                        <input type="text" name="prodcut_size" class="form-control visually-hidden"
+                                        <input type="text" name="product_size" class="form-control visually-hidden"
                                             data-role="tagsinput" value="smaill,Medium,Large">
                                     </div>
 
@@ -202,7 +202,8 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <input type="submit" class="btn btn-primary px-4" value="Save Product" />
+                                                <input type="submit" class="btn btn-primary px-4"
+                                                    value="Save Product" />
                                             </div>
                                         </div>
                                     </div>
@@ -290,92 +291,90 @@
     </script>
 
     {{-- validatin message --}}
-<script type="text/javascript">
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                product_name: {
-                    required : true,
-                },
-                short_descp: {
-                    required : true,
-                },
-                product_thumbnail: {
-                    required : true,
-                },
-                multi_img: {
-                    required : true,
-                },
-                selling_price: {
-                    required : true,
-                },
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    product_name: {
+                        required: true,
+                    },
+                    short_descp: {
+                        required: true,
+                    },
+                    product_thumbnail: {
+                        required: true,
+                    },
+                    multi_img: {
+                        required: true,
+                    },
+                    selling_price: {
+                        required: true,
+                    },
 
-                product_code: {
-                    required : true,
-                },
-                product_qty: {
-                    required : true,
-                },
-                brand_id: {
-                    required : true,
-                },
-                category_id: {
-                    required : true,
-                },
-                subcategory_id: {
-                    required : true,
-                },
+                    product_code: {
+                        required: true,
+                    },
+                    product_qty: {
+                        required: true,
+                    },
+                    brand_id: {
+                        required: true,
+                    },
+                    category_id: {
+                        required: true,
+                    },
+                    subcategory_id: {
+                        required: true,
+                    },
 
-            },
-            messages :{
-                product_name: {
-                    required : 'ကုန်ပစ္စည်းအမည်ဖြည့်ရန် လိုအပ်ပါသည်',
                 },
-                short_descp: {
-                    required : 'Please Enter Short Description',
-                },
-                product_thumbnail: {
-                    required : 'Please Select Product Thumbnail',
-                },
-                multi_img: {
-                    required : 'Please Select Product Multi Image',
-                },
-                selling_price: {
-                    required : 'Please Enter Selling Price',
-                },
+                messages: {
+                    product_name: {
+                        required: 'ကုန်ပစ္စည်းအမည်ဖြည့်ရန် လိုအပ်ပါသည်',
+                    },
+                    short_descp: {
+                        required: 'Please Enter Short Description',
+                    },
+                    product_thumbnail: {
+                        required: 'Please Select Product Thumbnail',
+                    },
+                    multi_img: {
+                        required: 'Please Select Product Multi Image',
+                    },
+                    selling_price: {
+                        required: 'Please Enter Selling Price',
+                    },
 
-                product_code: {
-                    required : 'Please Enter Product Code',
-                },
-                product_qty: {
-                    required : 'Please Enter Product Quantity',
-                },
-                brand_id: {
-                    required : 'Please Enter Short Description',
-                },
-                category_id: {
-                    required : 'Please Enter Short Description',
-                },
-                subcategory_id: {
-                    required : 'Please Enter Short Description',
-                },
+                    product_code: {
+                        required: 'Please Enter Product Code',
+                    },
+                    product_qty: {
+                        required: 'Please Enter Product Quantity',
+                    },
+                    brand_id: {
+                        required: 'Please Enter Short Description',
+                    },
+                    category_id: {
+                        required: 'Please Enter Short Description',
+                    },
+                    subcategory_id: {
+                        required: 'Please Enter Short Description',
+                    },
 
 
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
         });
-    });
-
-</script>
-
+    </script>
 @endsection

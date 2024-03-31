@@ -104,6 +104,9 @@
                 short_title: {
                     required: true,
                 },
+                slider_image: {
+                    required: true,
+                },
 
             },
             messages: {
@@ -112,6 +115,9 @@
                 },
                 short_title: {
                     required: 'Short Title ဖြည့်ရန်လို့အပ်ပါသည်',
+                },
+                slider_image: {
+                    required: 'Slider Image ဖြည့်ရန်လို့အပ်ပါသည်',
                 },
 
             },
