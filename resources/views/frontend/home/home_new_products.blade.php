@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ $product['category']['name'] }}</a>
+                                            <a href="#">{{ $product['category']['name'] }}</a>
                                         </div>
                                         <h2><a href="shop-product-right.html">{{ $product->product_name }}</a></h2>
                                         <div class="product-rate-cover">

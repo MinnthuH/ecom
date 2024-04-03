@@ -30,6 +30,8 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
+Route::get('/', [IndexController::class, 'Index']);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard'); // User dahboard
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile-store'); // User Profile Store
