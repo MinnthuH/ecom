@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
+use App\Models\SubCategory;
 use App\Models\User;
+use Symfony\Component\HttpFoundation\Request;
 
 class IndexController extends Controller
 {
@@ -72,4 +74,34 @@ class IndexController extends Controller
             ->get();
         return view('frontend.vendor.vendor_all', compact('vendors'));
     } // End Vendor All Method
+
+    // Category Prouduct Method
+
+    public function CatWiseProduct(Request $request, $id, $slug)
+    {
+        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        $breadcat = Category::where('id', $id)->first();
+
+        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('frontend.product.category_view', compact('products', 'categories', 'breadcat', 'newProduct'));
+    } // End Category Product Method
+
+    // SubCategory Prouduct Method
+
+    public function SubCatWiseProduct(Request $request, $id, $slug)
+    {
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
+
+        $subcategories = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+
+        $breadcat = SubCategory::where('id', $id)->first();
+
+        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('frontend.product.subcategory_view', compact('products', 'subcategories', 'breadcat', 'newProduct'));
+    } // End Category Product Method
 }

@@ -18,9 +18,12 @@
                 @foreach ($category as $item)
                     <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                         <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset($item->image) }}" alt="" /></a>
+                            <a href="{{ url('product/category/' . $item->id . '/' . $item->slug) }}"><img
+                                    src="{{ asset($item->image) }}" alt="" /></a>
                         </figure>
-                        <h6><a href="shop-grid-right.html">{{ $item->name }}</a></h6>
+                        <h6><a
+                                href="{{ url('product/category/' . $item->id . '/' . $item->slug) }}">{{ $item->name }}</a>
+                        </h6>
 
                         @php
                             $products = App\Models\Product::where('category_id', $item->id)->get();

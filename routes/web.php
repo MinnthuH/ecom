@@ -186,5 +186,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); // Product Details
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details'); // Vendor Details
 Route::get('/vendor/all}', [IndexController::class, 'VendorAll'])->name('vendor.all'); // Vendor All
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']); // CatWiseProudcut
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']); // SubCatWiseProduct
 
 require __DIR__ . '/auth.php';

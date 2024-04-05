@@ -249,7 +249,8 @@
                                 <ul>
                                     @foreach ($categories as $cat)
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="{{ asset($cat->image) }}"
+                                            <a href="{{ url('product/category/' . $cat->id . '/' . $cat->slug) }}">
+                                                <img src="{{ asset($cat->image) }}"
                                                     alt="" />{{ $cat->name }}</a>
                                         </li>
                                     @endforeach
@@ -311,7 +312,8 @@
 
                                 @foreach ($categories as $cat)
                                     <li>
-                                        <a href="#">{{ $cat->name }}<i class="fi-rs-angle-down"></i></a>
+                                        <a href="{{ url('product/category/' . $cat->id . '/' . $cat->slug) }}">{{ $cat->name }}<i
+                                                class="fi-rs-angle-down"></i></a>
                                         @php
                                             $subcategories = App\Models\SubCategory::where('category_id', $cat->id)
                                                 ->orderBy('subcategory_name', 'ASC')
@@ -321,7 +323,8 @@
 
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcat)
-                                                <li><a href="vendors-grid.html"></a>{{ $subcat->subcategory_name }}
+                                                <li><a
+                                                        href="{{ url('product/subcategory/' . $subcat->id . '/' . $subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
