@@ -70,7 +70,8 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('vendor.profile-store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('vendor.profile-store') }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -86,7 +87,8 @@
                                         <h6 class="mb-0">Shop Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="name" class="form-control" value="{{ $vendorData->name }}" />
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ $vendorData->name }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -94,7 +96,8 @@
                                         <h6 class="mb-0">Vendor Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="email" class="form-control" value="{{ $vendorData->email }}" />
+                                        <input type="text" name="email" class="form-control"
+                                            value="{{ $vendorData->email }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -102,7 +105,8 @@
                                         <h6 class="mb-0">Vendor Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="phone" class="form-control" value="{{ $vendorData->phone }}" />
+                                        <input type="text" name="phone" class="form-control"
+                                            value="{{ $vendorData->phone }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -110,7 +114,8 @@
                                         <h6 class="mb-0">Venodr Address</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="address" class="form-control" value="{{ $vendorData->address }}" />
+                                        <input type="text" name="address" class="form-control"
+                                            value="{{ $vendorData->address }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -118,14 +123,21 @@
                                         <h6 class="mb-0">Vendor Join Date</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <select class="form-select mb-3" name="vendor_join" aria-label="Default select example">
-                                            <option selected="">Open this select menu</option>
-                                            <option value="2021" {{ $vendorData->vendor_join == 2021 ? 'selected' : '' }}>2021</option>
-                                            <option value="2022" {{ $vendorData->vendor_join == 2022 ? 'selected' : '' }}>2022</option>
-                                            <option value="2023" {{ $vendorData->vendor_join == 2023 ? 'selected' : '' }}>2023</option>
-                                            <option value="2024" {{ $vendorData->vendor_join == 2024 ? 'selected' : '' }}>2024</option>
-                                            <option value="2025" {{ $vendorData->vendor_join == 2025 ? 'selected' : '' }}>2025</option>
-                                            <option value="2026" {{ $vendorData->vendor_join == 2026 ? 'selected' : '' }}>2026</option>
+                                        <select class="form-select mb-3" name="vendor_join"
+                                            aria-label="Default select example">
+                                            <option selected="" disabled>Open this select menu</option>
+                                            <option value="2021"
+                                                {{ $vendorData->vendor_join == 2021 ? 'selected' : '' }}>2021</option>
+                                            <option value="2022"
+                                                {{ $vendorData->vendor_join == 2022 ? 'selected' : '' }}>2022</option>
+                                            <option value="2023"
+                                                {{ $vendorData->vendor_join == 2023 ? 'selected' : '' }}>2023</option>
+                                            <option value="2024"
+                                                {{ $vendorData->vendor_join == 2024 ? 'selected' : '' }}>2024</option>
+                                            <option value="2025"
+                                                {{ $vendorData->vendor_join == 2025 ? 'selected' : '' }}>2025</option>
+                                            <option value="2026"
+                                                {{ $vendorData->vendor_join == 2026 ? 'selected' : '' }}>2026</option>
                                         </select>
                                     </div>
 
@@ -135,7 +147,8 @@
                                         <h6 class="mb-0">Vendor Info</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <textarea class="form-control" name="vendor_short_info" id="inputAddress" placeholder="Vendor Info..." rows="3">{{ $vendorData->vendor_short_info }}</textarea>
+                                        <textarea class="form-control" name="vendor_short_info" id="inputAddress" placeholder="Vendor Info..."
+                                            rows="3">{{ $vendorData->vendor_short_info }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

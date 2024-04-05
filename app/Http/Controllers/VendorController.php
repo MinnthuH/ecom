@@ -65,11 +65,10 @@ class VendorController extends Controller
             $data['photo'] = $fileName;
         }
         $data->save();
-        $notification = array(
-            'message' => 'Vendor Profile Updated Successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
+
+        //notification
+        toastr()->success('Vendor Profile Updated Successfully');
+        return redirect()->back();
     } // End Of Vendor profile update method
 
     // Vendor change password Method
@@ -126,11 +125,9 @@ class VendorController extends Controller
             'status' => 'inactive',
         ]);
 
-        $noti = array(
-            'message' => 'Vendor Registered Successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('vendor.login')->with($noti);
+        //notification
+        toastr()->success('Vendor Registered Successfully');
+        return redirect()->route('vendor.login');
     }
 
 }

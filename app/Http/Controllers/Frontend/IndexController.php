@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
+use App\Models\User;
 
 class IndexController extends Controller
 {
@@ -49,5 +50,26 @@ class IndexController extends Controller
         $multiImg = MultiImg::where('product_id', $id)->get();
 
         return view('frontend.product.product_details', compact('product', 'product_color', 'prodcut_size', 'multiImg', 'relatedProduct'));
-    }
+    } // End Product Deatil Method
+
+    // Vendor Details Method
+    public function VendorDetails($id)
+    {
+
+        $vendor = User::findOrFail($id);
+        $vendorProduct = Product::where('vendor_id', $id)->get();
+
+        return view('frontend.vendor.vendor_details', compact('vendor', 'vendorProduct'));
+    } // End Vendor Details Method
+
+    // All Vendor Method
+    public function VendorAll()
+    {
+
+        $vendors = User::where('status', 'active')
+            ->where('role', 'vendor')
+            ->orderBy('id', 'DESC')
+            ->get();
+        return view('frontend.vendor.vendor_all', compact('vendors'));
+    } // End Vendor All Method
 }

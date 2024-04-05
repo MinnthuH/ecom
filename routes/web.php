@@ -184,5 +184,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Frotend Product Details All
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); // Product Details
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details'); // Vendor Details
+Route::get('/vendor/all}', [IndexController::class, 'VendorAll'])->name('vendor.all'); // Vendor All
 
 require __DIR__ . '/auth.php';
