@@ -6,6 +6,7 @@
     <title>Pencil -eCommerce</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -43,7 +44,7 @@
     <main class="main">
 
 
-    @yield('main')
+        @yield('main')
 
     </main>
 
@@ -90,6 +91,94 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        // // Start product with model
+        function productView(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                    $('#productName').text(data.product.product_name);
+                    $('#productPrice').text(data.product.selling_price + '$');
+                    $('#productCode').text(data.product.product_code);
+                    $('#productCat').text(data.product.category.name);
+                    $('#productBrand').text(data.product.brand.name);
+                    $('#productImage').attr('src', '/' + data.product.product_thambnail);
+
+                    // Product Price
+                    if (data.product.discount_price == null) {
+                        $('#productPrice').text('');
+                        $('#oldPrice').text('');
+                        $('#productPrice').text(data.product.selling_price + '$');
+                    } else {
+                        $('#productPrice').text(data.product.discount_price + '$');
+                        $('#oldPrice').text(data.product.selling_price + '$');
+                    }
+
+                    // Product Stock
+                    if (data.product.product_qty > 0) {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#aviable').text('aviable');
+                    } else {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#stockout').text('stockout');
+                    }
+
+                    // Product Size
+                    $('select[name="size"]').empty();
+                    $.each(data.size, function(key, value) {
+                        $('select[name="size"]').append('<option value="' + value + '">' + value +
+                            '</option>')
+                        if (data.size == "") {
+                            $('#sizeArea').hide();
+                        } else {
+                            $('#sizeArea').show();
+                        }
+                    })
+
+
+                    // Product color
+                    $('select[name="color"]').empty();
+                    $.each(data.color, function(key, value) {
+                        $('select[name="color"]').append('<option value="' + value + '">' + value +
+                            '</option>')
+                        if (data.color == "") {
+                            $('#colorArea').hide();
+                        } else {
+                            $('#colorArea').show();
+                        }
+                    })
+
+
+
+
+                }
+            })
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

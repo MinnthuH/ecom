@@ -189,4 +189,7 @@ Route::get('/vendor/all}', [IndexController::class, 'VendorAll'])->name('vendor.
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']); // CatWiseProudcut
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']); // SubCatWiseProduct
 
+//Product View Modal with Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProdcutViewAjax']);
+
 require __DIR__ . '/auth.php';

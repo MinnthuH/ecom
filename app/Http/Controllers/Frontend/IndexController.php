@@ -40,18 +40,18 @@ class IndexController extends Controller
     public function ProductDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
-        $color = $product->prodcut_color;
+        $color = $product->product_color;
         $product_color = explode(',', $color);
 
-        $size = $product->prodcut_size;
-        $prodcut_size = explode(',', $size);
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
 
         $catId = $product->category_id;
         $relatedProduct = Product::where('category_id', $catId)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
         $multiImg = MultiImg::where('product_id', $id)->get();
 
-        return view('frontend.product.product_details', compact('product', 'product_color', 'prodcut_size', 'multiImg', 'relatedProduct'));
+        return view('frontend.product.product_details', compact('product', 'product_color', 'product_size', 'multiImg', 'relatedProduct'));
     } // End Product Deatil Method
 
     // Vendor Details Method
@@ -104,4 +104,22 @@ class IndexController extends Controller
 
         return view('frontend.product.subcategory_view', compact('products', 'subcategories', 'breadcat', 'newProduct'));
     } // End Category Product Method
+
+    // Product View Ajax Method
+    public function ProdcutViewAjax($id)
+    {
+        $product = Product::with('category', 'brand')->findOrFail($id);
+
+        $color = $product->product_color;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
+
+        return response()->json([
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size,
+        ]);
+    }
 }
