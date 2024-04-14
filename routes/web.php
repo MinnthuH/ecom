@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -191,5 +192,11 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatW
 
 //Product View Modal with Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProdcutViewAjax']);
+
+// Add to Cart Route
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/prodcut/mini/cart', [CartController::class, 'AddMiniCart']); // minin cart
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']); // minin cart remove
+Route::post('/dcart/data/store/{id}', [CartController::class, 'DetailAddToCart']); // Add to cart for product details
 
 require __DIR__ . '/auth.php';
